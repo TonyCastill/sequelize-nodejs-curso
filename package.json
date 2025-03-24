@@ -1,0 +1,28 @@
+{
+  "name": "curso-sequelize-nodejs",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "type": "module",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node ./src/index.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/TonyCastill/sequelize-nodejs-curso.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/TonyCastill/sequelize-nodejs-curso/issues"
+  },
+  "homepage": "https://github.com/TonyCastill/sequelize-nodejs-curso#readme",
+  "dependencies": {
+    "express": "^4.21.2",
+    "morgan": "^1.10.0",
+    "mysql2": "^3.14.0",
+    "sequelize": "^6.37.6"
+  }
+}
