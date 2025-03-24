@@ -55,7 +55,7 @@ We create a script to initialize the server named as "start" script
   }
 }
 ```
-Check the [documentation] (https://sequelize.org/docs/v6/getting-started/)
+Check the [documentation](https://sequelize.org/docs/v6/getting-started/)
 
 # First steps 
 Now, we create a `src/` directory to store all JS files. We're gonna use app.js to create the API server with express, and index.js to boot up the application 
