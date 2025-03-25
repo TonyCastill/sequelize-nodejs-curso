@@ -56,6 +56,21 @@ We create a script to initialize the server named as "start" script
 }
 ```
 Check the [documentation](https://sequelize.org/docs/v6/getting-started/)
+# Project directory Tree
+## src/
+Where you can find all the JS files to run the application
+
+### database
+Connection to the database
+
+### routes
+Where we define server routes
+
+### controllers
+Functions, events or actions that will trigger the user accesses any route
+
+### models
+Data models to temporarily store data
 
 # First steps 
 Now, we create a `src/` directory to store all JS files. We're gonna use app.js to create the API server with express, and index.js to boot up the application 
@@ -85,6 +100,59 @@ app.listen(3000); // Initialize server
 console.log('Server is listening on port', 3000);
 ```
  
-STOPPED AT MINUTE 5:28
+*Keep the application running while testing it*
+Install nodemon to keep the application running while making changes
+`npm i nodemon -D`
+-D flag is used to indicate package.json to creata a devDependencies section apart from the dependencies section that already exists, and then add the dependency there. Just like this:
+```
+  "devDependencies": {
+    "nodemon": "^3.1.9"
+  }
+```
+Now, the command to initilize the application is `npx nodemon src/index.js`
+We can also create script to excecute the application
+```
+"scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node ./src/index.js",
+    "dev": "nodemon src/index.js"
+},
+```
+And we excecute `npm run dev` from bash
 
+# Database connection
+We create file `src/database/database.js` where we define the connection like this:
+```
+import Sequelize from 'sequelize';
+/**
+ * Sequelize is referred to the
+ * library name, while sequelize
+ * it's an instance of Sequelize
+**/
+//CREATE A DB CONNECTION
+//1st parameter: DB name
+//2nd parameter: User
+//3rd parameter: Password
+export const sequelize = new Sequelize('projectsdb','bmx','bmx',{
+    host: 'localhost', //Where is located the database
+    dialect: 'mysql' //MySQL engine
+})
+```
+Now, we export the file to `index.js`
+```
+import app from './app.js'; // Import express app
+import {sequelize} from './database/database.js';
 
+async function main(){ //A promise
+    try{
+        await sequelize.authenticate(); //Wait for the connection to establish
+        console.log("Connection has been established successfully");
+        app.listen(3000);
+        console.log('Server is listening on port', 3000);
+    }catch (error){
+        console.log("Unable to connect to the database: ",error);
+    }
+}
+
+main();
+```
